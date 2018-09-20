@@ -148,7 +148,7 @@ The functions that calculate the radius of curvature and position of vehicle is 
 
 #### Plotting lane lines on the images
 
-The function that draws the lane on the image is here : [[pipeline.py lines 324-346 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L324-L346) 
+The function that draws the lane on the image is here : [pipeline.py lines 324-346 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L324-L346) 
 
 The code that processes all image files is [pipeline.py lines 516-561 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L516-L561) 
 
