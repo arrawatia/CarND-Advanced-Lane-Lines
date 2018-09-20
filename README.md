@@ -11,7 +11,11 @@ This project gave me a sense of how much a lane detection system needs to be tun
 ## How to run ?
 
 1. Install anaconda
-2. Install the python packages : `conda install enviornment.yaml`
+2. Install the python packages
+	
+	```
+	conda env create -f environment.yml
+	```
 3. Run the pipeline
 	
 	```
