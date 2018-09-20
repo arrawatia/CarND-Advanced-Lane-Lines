@@ -383,80 +383,89 @@ def offset(image, left_fit, right_fit, xm_per_pix=3.7 / 700):
 
 
 def main():
-    # images = glob.glob('camera_cal/calibration*.jpg')
-    # nx = 9
-    # ny = 6
-    # test_image = read_image('camera_cal/calibration1.jpg')
-    # img_size = (test_image.shape[1], test_image.shape[0])
-    #
-    # # 1. Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
-    # return_value, camera_matrix, dist_coeffs = calibrate(images, img_size, nx, ny)
-    #
-    # # Test undistortion on an image
-    # undist_test_image = undistort(test_image, camera_matrix, dist_coeffs)
-    # plt.imsave("output_images/undistorted_calibration1.jpg", undist_test_image)
-    #
-    # # * Apply a distortion correction to raw images.
-    # lane_images = glob.glob('test_images/*.jpg')
-    #
-    # output_path = "output_images/undistorted_lane_images"
-    # if not os.path.exists(output_path):
-    #     os.makedirs(output_path)
-    #
-    # output_path_plots = "output_images/plots/undistorted_lane_images"
-    # if not os.path.exists(output_path_plots):
-    #     os.makedirs(output_path_plots)
-    #
-    # for lane_image in lane_images:
-    #     image = read_image(lane_image)
-    #     undist_lane_image = undistort(image, camera_matrix, dist_coeffs)
-    #     plt.imsave("%s/%s" % (output_path, os.path.basename(lane_image)), undist_lane_image)
-    #
-    #     # Plot the result
-    #     f, (ax1, ax2) = plt.subplots(1, 2, figsize=(24, 9))
-    #     f.tight_layout()
-    #     ax1.imshow(image)
-    #     ax1.set_title('Original Image', fontsize=50)
-    #     ax2.imshow(undist_lane_image, cmap='gray')
-    #     ax2.set_title('Undistorted', fontsize=50)
-    #     plt.subplots_adjust(left=0., right=1, top=0.9, bottom=0.)
-    #
-    #     plt.savefig("%s/%s" % (output_path_plots, os.path.basename(lane_image)))
-    #
-    # # * Use color transforms, gradients, etc., to create a thresholded binary image.
-    # lane_images = glob.glob('output_images/undistorted_lane_images/*.jpg')
-    #
-    # output_path = "output_images/binary_lane_images"
-    # if not os.path.exists(output_path):
-    #     os.makedirs(output_path)
-    #
-    # output_path_plots = "output_images/plots/binary_lane_images"
-    # if not os.path.exists(output_path_plots):
-    #     os.makedirs(output_path_plots)
-    #
-    # ksize = 3  # Choose a larger odd number to smooth gradient measurements
-    #
-    # for lane_image in lane_images:
-    #     image = read_image(lane_image)
-    #     sxbinary = abs_sobel_thresh(grayscale(image), orient='x', sobel_kernel=ksize, mag_thresh=(20, 100))
-    #     s_binary = hls_select(image, thresh=(170, 255))
-    #
-    #     # color_binary = np.dstack((np.zeros_like(sxbinary), sxbinary, s_binary)) * 255
-    #
-    #     combined_binary = np.zeros_like(sxbinary)
-    #     combined_binary[(s_binary == 1) | (sxbinary == 1)] = 1
-    #     plt.imsave("%s/%s" % (output_path, os.path.basename(lane_image)), combined_binary, cmap='gray')
-    #
-    #     # Plot the result
-    #     f, (ax1, ax2) = plt.subplots(1, 2, figsize=(24, 9))
-    #     f.tight_layout()
-    #     ax1.imshow(image)
-    #     ax1.set_title('Original Image', fontsize=50)
-    #     ax2.imshow(combined_binary, cmap='gray')
-    #     ax2.set_title('Thresholded Gradient', fontsize=50)
-    #     plt.subplots_adjust(left=0., right=1, top=0.9, bottom=0.)
-    #
-    #     plt.savefig("%s/%s" % (output_path_plots, os.path.basename(lane_image)))
+    images = glob.glob('camera_cal/calibration*.jpg')
+    nx = 9
+    ny = 6
+    test_image = read_image('camera_cal/calibration1.jpg')
+    img_size = (test_image.shape[1], test_image.shape[0])
+
+    # 1. Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
+    return_value, camera_matrix, dist_coeffs = calibrate(images, img_size, nx, ny)
+
+    # Test undistortion on an image
+    undist_test_image = undistort(test_image, camera_matrix, dist_coeffs)
+    # Plot the result
+    f, (ax1, ax2) = plt.subplots(1, 2, figsize=(24, 9))
+    f.tight_layout()
+    ax1.imshow(test_image)
+    ax1.set_title('Original Image', fontsize=50)
+    ax2.imshow(undist_test_image, cmap='gray')
+    ax2.set_title('Undistorted', fontsize=50)
+    plt.subplots_adjust(left=0., right=1, top=0.9, bottom=0.)
+
+    plt.savefig("output_images/undistorted_calibration1.jpg")
+
+    # * Apply a distortion correction to raw images.
+    lane_images = glob.glob('test_images/*.jpg')
+
+    output_path = "output_images/undistorted_lane_images"
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+
+    output_path_plots = "output_images/plots/undistorted_lane_images"
+    if not os.path.exists(output_path_plots):
+        os.makedirs(output_path_plots)
+
+    for lane_image in lane_images:
+        image = read_image(lane_image)
+        undist_lane_image = undistort(image, camera_matrix, dist_coeffs)
+        plt.imsave("%s/%s" % (output_path, os.path.basename(lane_image)), undist_lane_image)
+
+        # Plot the result
+        f, (ax1, ax2) = plt.subplots(1, 2, figsize=(24, 9))
+        f.tight_layout()
+        ax1.imshow(image)
+        ax1.set_title('Original Image', fontsize=50)
+        ax2.imshow(undist_lane_image, cmap='gray')
+        ax2.set_title('Undistorted', fontsize=50)
+        plt.subplots_adjust(left=0., right=1, top=0.9, bottom=0.)
+
+        plt.savefig("%s/%s" % (output_path_plots, os.path.basename(lane_image)))
+
+    # * Use color transforms, gradients, etc., to create a thresholded binary image.
+    lane_images = glob.glob('output_images/undistorted_lane_images/*.jpg')
+
+    output_path = "output_images/binary_lane_images"
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
+
+    output_path_plots = "output_images/plots/binary_lane_images"
+    if not os.path.exists(output_path_plots):
+        os.makedirs(output_path_plots)
+
+    ksize = 3  # Choose a larger odd number to smooth gradient measurements
+
+    for lane_image in lane_images:
+        image = read_image(lane_image)
+        sxbinary = abs_sobel_thresh(grayscale(image), orient='x', sobel_kernel=ksize, mag_thresh=(20, 100))
+        s_binary = hls_select(image, thresh=(170, 255))
+
+        # color_binary = np.dstack((np.zeros_like(sxbinary), sxbinary, s_binary)) * 255
+
+        combined_binary = np.zeros_like(sxbinary)
+        combined_binary[(s_binary == 1) | (sxbinary == 1)] = 1
+        plt.imsave("%s/%s" % (output_path, os.path.basename(lane_image)), combined_binary, cmap='gray')
+
+        # Plot the result
+        f, (ax1, ax2) = plt.subplots(1, 2, figsize=(24, 9))
+        f.tight_layout()
+        ax1.imshow(image)
+        ax1.set_title('Original Image', fontsize=50)
+        ax2.imshow(combined_binary, cmap='gray')
+        ax2.set_title('Thresholded Gradient', fontsize=50)
+        plt.subplots_adjust(left=0., right=1, top=0.9, bottom=0.)
+
+        plt.savefig("%s/%s" % (output_path_plots, os.path.basename(lane_image)))
 
     # * Apply a perspective transform to rectify binary image ("birds-eye view").
     lane_images = glob.glob('output_images/binary_lane_images/*.jpg')
@@ -476,8 +485,8 @@ def main():
 
         bottom_left, top_left, top_right, bottom_right = (
             [100, img_y - 50],
-            [530, 470],
-            [820, 470],
+            [550, 470],
+            [800, 470],
             [img_x - 100, img_y - 50])
 
         vertices = [bottom_left, top_left, top_right, bottom_right]

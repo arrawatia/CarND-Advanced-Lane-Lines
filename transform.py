@@ -149,8 +149,8 @@ for lane_image in lane_images:
 
     bottom_left, top_left, top_right, bottom_right = (
         [100, img_y - 50],
-        [530, 470],
-        [820, 470],
+        [550, 470],
+        [800, 470],
         [img_x - 100, img_y - 50])
 
     vertices = [bottom_left, top_left, top_right, bottom_right]
@@ -159,7 +159,7 @@ for lane_image in lane_images:
 
     r = draw_region(img, np.array(vertices, np.int32))
 
-    warped, transform_matrix = perspective_xform(img, 10, np.array(vertices, np.float32))
+    warped, transform_matrix = perspective_xform(img, 0, np.array(vertices, np.float32))
 
     f, (ax1, ax2) = plt.subplots(1, 2, figsize=(24, 9))
     f.tight_layout()
