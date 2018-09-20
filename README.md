@@ -1,4 +1,4 @@
-#Advanced Lane Finding Project
+# Advanced Lane Finding Project
 
 This project introduces new techniques to find lanes in an image or video. It uses traditional computer vision techniques which require a lot of hand tuning of parameters.
 
@@ -8,7 +8,7 @@ We also deal with real world issues like camera distortion and calculate the cur
 
 This project gave me a sense of how much a lane detection system needs to be tuned for particular road conditions and how much work it is to make it robust.
 
-##How to run ?
+## How to run ?
 
 1. Install anaconda
 2. Install the python packages : `conda install enviornment.yaml`
