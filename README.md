@@ -61,7 +61,7 @@ The pipeline processes the images to find lane lines. The processing steps are:
 We also calculate the radius of curvature of the lanes and position of the car from center of the lane. 
 
 
-####Distortion correction
+#### Distortion correction
 
 
 The pipeline applies distortion correction using the camera matrix and distortion coefficients from camera caliberation step to all the test images. 
@@ -137,18 +137,18 @@ The function that selects the lane pixels and fits a polynomial are here: [pipel
 
 The function `find_lanes_sliding_window` does a full sliding window search on the image. `find_lanes_non_sliding_window` function optimizes the search by searching in a margin around the previous line position.
 
-The code that selects the lane pixels and fits a polynomial for the transformed images is here: [pipeline.py lines 470-509 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L470-L509) lines 470-509. 
+The code that selects the lane pixels and fits a polynomial for the transformed images is here: [pipeline.py lines 470-509 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L470-L509)
 
 An example of this transformation is shown below.
 ![alt text][image5]
 
 #### Radius of curvature of the lane and position of the vehicle with respect to center.
 
-The functions that calculate the radius of curvature and position of vehicle is here: [pipeline.py lines 297-321 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L297-L321) lines 297-321. 
+The functions that calculate the radius of curvature and position of vehicle is here: [pipeline.py lines 297-321 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L297-L321)
 
 #### Plotting lane lines on the images
 
-The function that draws the lane on the image is here : [[pipeline.py lines 324-346 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L324-L346) lines 324-346
+The function that draws the lane on the image is here : [[pipeline.py lines 324-346 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L324-L346) 
 
 The code that processes all image files is [pipeline.py lines 516-561 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L516-L561) 
 
