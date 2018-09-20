@@ -1,4 +1,4 @@
-# Advanced Lane Finding Project
+#Advanced Lane Finding Project
 
 This project introduces new techniques to find lanes in an image or video. It uses traditional computer vision techniques which require a lot of hand tuning of parameters.
 
@@ -8,14 +8,10 @@ We also deal with real world issues like camera distortion and calculate the cur
 
 This project gave me a sense of how much a lane detection system needs to be tuned for particular road conditions and how much work it is to make it robust.
 
-## How to run ?
+##How to run ?
 
 1. Install anaconda
-2. Install the python packages
-	
-	```
-	conda env create -f environment.yml
-	```
+2. Install the python packages : `conda install enviornment.yaml`
 3. Run the pipeline
 	
 	```
@@ -40,13 +36,13 @@ This project gave me a sense of how much a lane detection system needs to be tun
 
 ## Camera Calibration
 
-[pipeline.py](pipeline.py) lines 4-82 has functions that perform the distortion.
+[pipeline.py lines 4-82 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L4-L82)  has functions that perform the distortion.
 
 The idea is use OpenCV `cv2.findChessboardCorners` to find corners on the chessboard images. These corners are then used by another OpenCV function `cv2.calibrateCamera` which gives us a camera matrix and distortion coefficient.
 
 Once we have the camera matrix and distortion coefficient, we can use these to undistort the images.
 
-[pipeline.py](pipeline.py) lines 386-406 shows this in action. An example output image is 
+[pipeline.py lines 386-406 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L386-L406)  shows this in action. An example output image is 
 
 ![alt text][image1]
 
@@ -70,7 +66,7 @@ We also calculate the radius of curvature of the lanes and position of the car f
 
 The pipeline applies distortion correction using the camera matrix and distortion coefficients from camera caliberation step to all the test images. 
 
-The code is here : [pipeline.py](pipeline.py) lines 406-433
+The code is here : [pipeline.py lines 406-433 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L406-L433)
 
 An example of distortion correction applied to one of the test images 
 
@@ -88,13 +84,13 @@ I used the sobel operator to calculate the derivative in the `x` direction. I fo
 
 I chose to use the HSV color space as described in the video. After experimentation, I chose to use the saturation channel.
 
-The functions for applying sobel operators and processing color spaces are here: [pipeline.py](pipeline.py) 84-165
+The functions for applying sobel operators and processing color spaces are here: [pipeline.py lines 84-165 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L84-L165) 
 
 These functions are used to get a binary thresholded images from the test images. A sample image is shown below
 
 ![alt text][image2]
 
-The code that uses these functions is here: [pipeline.py](pipeline.py) lines 446-468
+The code that uses these functions is here: [pipeline.py lines 446-468 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L446-L468) 
 
 The comparison plots are in here : [plots](./output_images/plots/binary_lane_images)
 
@@ -104,7 +100,7 @@ The undistorted test images are here : [binary test images](./output_images/bina
 
 The perspective transform then transforms the binary file to a bird's eye view that makes the lanes much straighter. It also makes it easier to fit a polynomial through the lane pixels. 
 
-The functions that calculates the perspective transform matrices and transforms the images based on these tranform matrices is here: [pipeline.py](pipeline.py) lines 176-201
+The functions that calculates the perspective transform matrices and transforms the images based on these tranform matrices is here: [pipeline.py lines 176-201 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L176-L201) 
 
 The `perspective_transform_matrices()` function takes as inputs an image (`img`) and source (`src`) points.  I chose the hardcode the source and destination points in the following manner:
 
@@ -125,7 +121,7 @@ dst = np.float32([
     ])
 ```
 
-The code that applies the perspective transform to binary thresholded test images is here: [pipeline.py](pipeline.py) lines 470-509. 
+The code that applies the perspective transform to binary thresholded test images is here: [pipeline.py lines 470-509 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L470-L509) 
 
 An example image along with transformed output is shown below
 
@@ -137,24 +133,24 @@ The undistorted test images are here : [transformed test images](./output_images
 
 #### Identifying lane-line pixels and fitting a polynomial curve
 
-The function that selects the lane pixels and fits a polynomial are here: [pipeline.py](pipeline.py) lines 204-294. 
+The function that selects the lane pixels and fits a polynomial are here: [pipeline.py lines 204-294 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L204-L294)
 
 The function `find_lanes_sliding_window` does a full sliding window search on the image. `find_lanes_non_sliding_window` function optimizes the search by searching in a margin around the previous line position.
 
-The code that selects the lane pixels and fits a polynomial for the transformed images is here: [pipeline.py](pipeline.py) lines 470-509. 
+The code that selects the lane pixels and fits a polynomial for the transformed images is here: [pipeline.py lines 470-509 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L470-L509) lines 470-509. 
 
 An example of this transformation is shown below.
 ![alt text][image5]
 
 #### Radius of curvature of the lane and position of the vehicle with respect to center.
 
-The functions that calculate the radius of curvature and position of vehicle is here: [pipeline.py](pipeline.py) lines 297-321. 
+The functions that calculate the radius of curvature and position of vehicle is here: [pipeline.py lines 297-321 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L297-L321) lines 297-321. 
 
 #### Plotting lane lines on the images
 
-The function that draws the lane on the image is here : [pipeline.py](pipeline.py) lines 324-346
+The function that draws the lane on the image is here : [[pipeline.py lines 324-346 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L324-L346) lines 324-346
 
-The code that processes all image files is [pipeline.py](pipeline.py) lines 516-561
+The code that processes all image files is [pipeline.py lines 516-561 ](https://github.com/arrawatia/CarND-Advanced-Lane-Lines/blob/master/pipeline.py#L516-L561) 
 
 One of the processed test images is shown below.
 
